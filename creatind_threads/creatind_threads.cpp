@@ -25,6 +25,21 @@ int main() {
 	cout << endl;
 
 
+	HANDLE hMinMax = CreateThread(nullptr, 0, min_max, (void*)n, 0, nullptr);
+	if (hMinMax == NULL) {
+		cerr << "Не удалось создать поток min_max\n";
+		delete[] arr;
+		return 1;
+	}
+
+
+	HANDLE hAverage = CreateThread(nullptr, 0, average, (void*)n, 0, nullptr);
+	if (hAverage == NULL) {
+		cerr << "Не удалось создать поток average\n";
+		CloseHandle(hMinMax);
+		delete[] arr;
+		return 1;
+	}
 
 	WaitForSingleObject(hAverage, INFINITE);
 	CloseHandle(hAverage);

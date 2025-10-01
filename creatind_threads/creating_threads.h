@@ -4,21 +4,21 @@
 
 using namespace std;
 
-volatile int* arr;
+volatile int* arrrayData;
 volatile int minElement, maxElement, averageElement;
 
 DWORD WINAPI min_max(LPVOID dim) {
     int n = (int)dim;
-    minElement = arr[0];
-    maxElement = arr[0];
+    minElement = arrrayData[0];
+    maxElement = arrrayData[0];
     for (int i = 1; i < n; i++) {
-        if (arr[i] > maxElement) {
-            maxElement = arr[i];
+        if (arrrayData[i] > maxElement) {
+            maxElement = arrrayData[i];
             Sleep(7);
         }
 
-        if (arr[i] < minElement) {
-            minElement = arr[i];
+        if (arrrayData[i] < minElement) {
+            minElement = arrrayData[i];
             Sleep(7);
         }
     }
@@ -33,7 +33,7 @@ DWORD WINAPI average(LPVOID dim) {
     int n = (int)dim;
     int sum = 0;
     for (int i = 0; i < n; i++) {
-        sum += arr[i];
+        sum += arrrayData[i];
         Sleep(12);
     }
 

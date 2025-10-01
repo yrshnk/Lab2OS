@@ -16,11 +16,11 @@ int main() {
 	}
 
 
-	arr = new int[n];
+	arrrayData = new int[n];
 	cout << "Введите элементы массива: ";
 	for (int i = 0; i < n; ++i) {
 		cin >> tmp;
-		arr[i] = tmp;
+		arrrayData[i] = tmp;
 	}
 	cout << endl;
 
@@ -28,7 +28,7 @@ int main() {
 	HANDLE hMinMax = CreateThread(nullptr, 0, min_max, (void*)n, 0, nullptr);
 	if (hMinMax == NULL) {
 		cerr << "Не удалось создать поток min_max\n";
-		delete[] arr;
+		delete[] arrrayData;
 		return 1;
 	}
 
@@ -37,7 +37,7 @@ int main() {
 	if (hAverage == NULL) {
 		cerr << "Не удалось создать поток average\n";
 		CloseHandle(hMinMax);
-		delete[] arr;
+		delete[] arrrayData;
 		return 1;
 	}
 
@@ -50,15 +50,16 @@ int main() {
 
 	cout << "\n\nМассив после форматирования: ";
 	for (int i = 0; i < n; ++i) {
-		if (arr[i] == maxElement || arr[i] == minElement) {
-			arr[i] = averageElement;
+		if (arrrayData[i] == maxElement || arrrayData[i] == minElement) {
+			arrrayData[i] = averageElement;
 		}
-		cout << arr[i] << " ";
+		cout << arrrayData[i] << " ";
 	}
 	cout << '\n';
 
 
-	delete[] arr;
-	arr = nullptr;
+	delete[] arrrayData;
+	arrrayData = nullptr;
 	return 0;
 }
+

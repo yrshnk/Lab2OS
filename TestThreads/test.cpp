@@ -47,3 +47,16 @@ static void runThreadsInitArray(vector<int>& mas) {
 	delete[] arr; arr = nullptr;
 }
 
+TEST(IntegrationThreads, CorrectMinMaxAverage) {
+	vector<int> mas = { 1,2,3,4,5 };
+	ASSERT_NO_THROW(runThreadsInitArray(mas));
+
+
+	EXPECT_EQ(minElement, 1);
+	EXPECT_EQ(maxElement, 5);
+	EXPECT_EQ(averageElement, (1 + 2 + 3 + 4 + 5) / 5);
+
+	vector<int> expected = { 3,2,3,4,3 };
+	EXPECT_EQ(mas, expected);
+}
+
